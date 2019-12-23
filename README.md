@@ -14,5 +14,5 @@ The Restaurant Reviews project is about editing the webpage to show a map with a
 7) You can change the port number to one that suit you.
 
 # Live Demo
-https://fatmah-aloudah.github.io/RestaurantsReviews-fend/restaurant.html?id=2
+https://fatmah-aloudah.github.io/RestaurantsReviews-fend/
 
