@@ -73,8 +73,6 @@ self.addEventListener('install', function(event) {
           });
       })
   );
-});
-
         return fetch(event.request).then(
           function(response) {
             // Check if we received a valid response
