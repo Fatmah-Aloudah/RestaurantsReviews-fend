@@ -1,25 +1,26 @@
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
-  '/',
-  '/index.html',
-       '/index.html?homescreen=1',
-       '/?homescreen=1',
-       '/resturants.html',
-       '/css/styles.css',
-       '/data/resturants.json',
-       '/js/dbhelper.js',
-       '/js/main.js',
-       '/js/resturant_info.js',
-       '/img/1.jpg',
-       '/img/2.jpg',
-       '/img/3.jpg',
-       '/img/4.jpg',
-       '/img/5.jpg',
-       '/img/6.jpg',
-       '/img/7.jpg',
-       '/img/8.jpg',
-       '/img/9.jpg',
-       '/img/10.jpg'
+       './',
+       './index.html',
+       './index.html?homescreen=1',
+       './?homescreen=1',
+       './restaurant.html',
+       './css/styles.css',
+       './data/restaurant.json',
+       './js/dbhelper.js',
+       './js/main.js',
+       './js/index.js',
+       './js/restaurant_info.js',
+       './img/1.jpg',
+       './img/2.jpg',
+       './img/3.jpg',
+       './img/4.jpg',
+       './img/5.jpg',
+       './img/6.jpg',
+       './img/7.jpg',
+       './img/8.jpg',
+       './img/9.jpg',
+       './img/10.jpg'
 ];
 
 IndexController.prototype._registerServiceWorker = function(){
@@ -38,16 +39,16 @@ self.addEventListener('install', function(event) {
     caches.open(CACHE_NAME)
       .then(function(cache) {
         console.log('Opened cache');
-        cache.add('./1.jpg');
-        cache.add('./2.jpg');
-        cache.add('./3.jpg');
-        cache.add('./4.jpg');
-        cache.add('./5.jpg');
-        cache.add('./6.jpg');
-        cache.add('./7.jpg');
-        cache.add('./8.jpg');
-        cache.add('./9.jpg');
-        cache.add('./10.jpg');
+        cache.add('./img/1.jpg');
+        cache.add('./img/2.jpg');
+        cache.add('./img/3.jpg');
+        cache.add('./img/4.jpg');
+        cache.add('./img/5.jpg');
+        cache.add('./img/6.jpg');
+        cache.add('./img/7.jpg');
+        cache.add('./img/8.jpg');
+        cache.add('./img/9.jpg');
+        cache.add('./img/10.jpg');
         return cache.addAll(urlsToCache);
       })
   );
@@ -62,14 +63,15 @@ self.addEventListener('install', function(event) {
 //         if (response) {
 //           return response;
 //         }
-        
+
   self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.open(CACHE_NAME)
       .then((cache) => {
         return cache.match(event.request)
           .then((response) => {
-            return response || fetch(event.request) });
+            return response || fetch(event.request)
+          });
       })
   );
         return fetch(event.request).then(
@@ -93,9 +95,8 @@ self.addEventListener('install', function(event) {
             return response;
           }
         );
-      })
-    );
-});
+      });
+
 
 self.addEventListener('activate', function(event) {
 
