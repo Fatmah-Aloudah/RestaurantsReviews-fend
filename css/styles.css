@@ -192,8 +192,8 @@ nav h1 a {
 }
 .inside #map-container {
   background: blue none repeat scroll 0 0;
-  height: 87%;
-  position: fixed;
+  height: 70%;
+  position:fixed;
   right: 0;
   top: 80px;
   width: 50%;
@@ -206,7 +206,7 @@ nav h1 a {
 .inside #footer {
   bottom: 0;
   position: absolute;
-  width: 50%;
+  width: 100%;
 }
 #restaurant-name {
   color: #f18200;
@@ -319,6 +319,7 @@ ul#restaurants-list{
 
 .restaurant-content-wrapper #restaurant-container #restaurant-img .restaurant-data {
   max-width: 100%;
+  height: auto;
 }
 
 section#restaurant-container, section#reviews-container{
