@@ -38,10 +38,21 @@ self.addEventListener('install', function(event) {
     caches.open(CACHE_NAME)
       .then(function(cache) {
         console.log('Opened cache');
+        cache.add('./1.jpg');
+        cache.add('./2.jpg');
+        cache.add('./3.jpg');
+        cache.add('./4.jpg');
+        cache.add('./5.jpg');
+        cache.add('./6.jpg');
+        cache.add('./7.jpg');
+        cache.add('./8.jpg');
+        cache.add('./9.jpg');
+        cache.add('./10.jpg');
         return cache.addAll(urlsToCache);
       })
   );
 });
+
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
