@@ -1,4 +1,4 @@
-var CACHE_NAME = 'my-site-cache-v1';
+var CACHE_NAME = 'm-cache-v1';
 var urlsToCache = [
        './',
        './index.html',
@@ -23,94 +23,36 @@ var urlsToCache = [
        './img/10.jpg'
 ];
 
-IndexController.prototype._registerServiceWorker = function(){
-if (!navigator.serviceWorker) return;
-navigator.serviceWorker.register('./SW.js').then(function(){
-console.log('Registration worked!');
-}).catch(function(){
-console.log('Registration failed!');
-});
-}
-
 self.addEventListener('install', function(event) {
-  console.log('Service worker installed!');
-  // Perform install steps
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Opened cache');
-        // cache.add('./img/1.jpg');
-        // cache.add('./img/2.jpg');
-        // cache.add('./img/3.jpg');
-        // cache.add('./img/4.jpg');
-        // cache.add('./img/5.jpg');
-        // cache.add('./img/6.jpg');
-        // cache.add('./img/7.jpg');
-        // cache.add('./img/8.jpg');
-        // cache.add('./img/9.jpg');
-        // cache.add('./img/10.jpg');
-        return cache.addAll(urlsToCache);
+      .then( (cache) => {
+        return cache.addAll(urlsToCach);
       })
   );
 });
 
+self.addEventListener('activate', function (event) {
+    event.waitUntil(
+        caches.keys()
+          .then( (cacheNames) => {
+            return Promise.all(
+                cacheNames.filter(function (cacheName) {
+                    return cacheName.startsWith('my-site-') &&
+                        cacheName != CACHE_NAME;
+                }).map(function (cacheName) {
+                    return caches.delete(cacheName);
+                })
+            );
+          })
+    );
+});
 
-// self.addEventListener('fetch', function(event) {
-//   event.respondWith(
-//     caches.match(event.request)
-//       .then(function(response) {
-//         // Cache hit - return response
-//         if (response) {
-//           return response;
-//         }
-
-  self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        return cache.match(event.request)
-          .then((response) => {
-            return response || fetch(event.request)
-          });
+    caches.match(event.request)
+      .then((response) => {
+        return response || fetch(event.request);
       })
-  );
-        return fetch(event.request).then(
-          function(response) {
-            // Check if we received a valid response
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // IMPORTANT: Clone the response. A response is a stream
-            // and because we want the browser to consume the response
-            // as well as the cache consuming the response, we need
-            // to clone it so we have two streams.
-            var responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then(function(cache) {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          }
-        );
-      });
-
-
-self.addEventListener('activate', function(event) {
-
-  var cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1'];
-
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.map(function(cacheName) {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
   );
 });
