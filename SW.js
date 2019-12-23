@@ -24,7 +24,7 @@ var urlsToCache = [
 
 IndexController.prototype._registerServiceWorker = function(){
 if (!navigator.serviceWorker) return;
-navigator.serviceWorker.register('./SW.js').then(function(){
+navigator.serviceWorker.register('/SW.js').then(function(){
 console.log('Registration worked!');
 }).catch(function(){
 console.log('Registration failed!');
