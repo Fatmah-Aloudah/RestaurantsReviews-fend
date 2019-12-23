@@ -39,16 +39,16 @@ self.addEventListener('install', function(event) {
     caches.open(CACHE_NAME)
       .then(function(cache) {
         console.log('Opened cache');
-        cache.add('./img/1.jpg');
-        cache.add('./img/2.jpg');
-        cache.add('./img/3.jpg');
-        cache.add('./img/4.jpg');
-        cache.add('./img/5.jpg');
-        cache.add('./img/6.jpg');
-        cache.add('./img/7.jpg');
-        cache.add('./img/8.jpg');
-        cache.add('./img/9.jpg');
-        cache.add('./img/10.jpg');
+        // cache.add('./img/1.jpg');
+        // cache.add('./img/2.jpg');
+        // cache.add('./img/3.jpg');
+        // cache.add('./img/4.jpg');
+        // cache.add('./img/5.jpg');
+        // cache.add('./img/6.jpg');
+        // cache.add('./img/7.jpg');
+        // cache.add('./img/8.jpg');
+        // cache.add('./img/9.jpg');
+        // cache.add('./img/10.jpg');
         return cache.addAll(urlsToCache);
       })
   );
