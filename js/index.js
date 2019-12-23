@@ -10,7 +10,7 @@
 // }
 
 if ('serviceWorker' in navigator){
-  navigator.serviceWorker.register('SW.js').then(function(registration){
+  navigator.serviceWorker.register('./SW.js').then(function(registration){
     console.log('service worker registration succeeded:',registration);
   },
 function(error){
