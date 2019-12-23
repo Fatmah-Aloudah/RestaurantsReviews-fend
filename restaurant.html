@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 
 <head>
   <!-- Normalize.css for better cross-browser consistency -->
@@ -14,14 +14,15 @@
   <!-- Beginning header -->
   <header>
     <!-- Beginning nav -->
-    <nav>
+    <nav role="navigation">
       <h1><a href="/">Restaurant Reviews</a></h1>
-    </nav>
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" >
+    <ul id="breadcrumb" aria-label="Breadcrumb" >
       <li><a href="/">Home</a></li>
     </ul>
     <!-- End breadcrumb -->
+    </nav>
+
     <!-- End nav -->
   </header>
   <!-- End header -->
@@ -67,19 +68,6 @@
   <!-- Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkubECiH-E1tEWmzpneDih_Yom21c4CXs&libraries=places&callback=initMap"></script>
   <!-- End scripts -->
-<!-- <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('./SW.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }, function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    });
-  });
-}
-</script> -->
 
 </body>
 
