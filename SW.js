@@ -6,7 +6,7 @@ var urlsToCache = [
        './?homescreen=1',
        './restaurant.html',
        './css/styles.css',
-       './data/restaurant.json',
+       './data/restaurants.json',
        './js/dbhelper.js',
        './js/main.js',
        './js/index.js',
@@ -25,7 +25,7 @@ var urlsToCache = [
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches.open(staticCacheName)
       .then( (cache) => {
         return cache.addAll(urlsToCache);
       })
@@ -48,7 +48,7 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request)
+    caches.match(event.request, event.ignoreSearch)
       .then((response) => {
         return response || fetch(event.request);
       })
